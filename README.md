@@ -6,9 +6,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## TanStack Query installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm i @tanstack/angular-query-experimental` to to install tanStack. You can also find more info in  `https://tanstack.com/query/latest/docs/framework/angular/installation`.
+
+## Pre sett to use tanStack 
+
+In  `app.config.ts` we need to add this line in providers `provideTanStackQuery(new QueryClient())`, and import required components.
+
+## Add DevTools
+
+In `app.config.ts` we need to add this line in providers `, withDevtools()`.
+
+## Devtools explication
+
+Now `Devtools` are added by default, just in case we need to manage how to see ir check in these page to see how to do it `https://tanstack.com/query/latest/docs/framework/angular/devtools`.
 
 ## Build
 

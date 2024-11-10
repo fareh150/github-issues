@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IssuesService } from '../../services/issues.service';
+import { LabelSelectorComponent } from "../../components/label-selector/label-selector.component";
 
 @Component({
   selector: 'issues-list-page',
@@ -9,7 +10,8 @@ import { IssuesService } from '../../services/issues.service';
   imports: [
     CommonModule,
     RouterLink,
-  ],
+    LabelSelectorComponent
+],
   templateUrl: './issues-list-page.component.html',
 })
 export default class IssuesListPageComponent {

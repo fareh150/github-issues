@@ -10,21 +10,17 @@
     </div>
   </div>
   <div class="mt-4 flex flex-col col-span-2">
-    <h3>Issues</h3>
     <a routerLink="/issue/123">Ir a Issue 123 </a>
     <!-- Todo: Listado de issues -->
     <!-- Todo: Spinner -->
     <!-- Todo: Si no hay issues por el filtro -->
   </div>
   <div class="col-span-1">
-    <h3>Labels</h3>
     @if (labelsQuery.isLoading())
     {
       <p>Estamos cargando</p>
     } @else {
-      <pre>
-        {{ labelsQuery.data() | json }}
-      </pre>
+      <issues-label-selector [labels]="labelsQuery.data() ?? []" />
     }
     <!-- Todo: Spinner -->
 

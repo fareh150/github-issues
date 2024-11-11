@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { IssuesService } from '../../services/issues.service';
 import { LabelSelectorComponent } from "../../components/label-selector/label-selector.component";
@@ -8,7 +7,6 @@ import { IssueItemComponent } from '../../components/issue-item/issue-item.compo
   selector: 'issues-list-page',
   standalone: true,
   imports: [
-    CommonModule,
     LabelSelectorComponent,
     IssueItemComponent
 ],

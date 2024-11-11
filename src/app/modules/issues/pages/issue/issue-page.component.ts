@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs';
+import { IssueService } from '../../services';
 
 @Component({
   selector: 'app-issue-page',
@@ -14,12 +15,16 @@ import { map, tap } from 'rxjs';
 })
 export default class IssuePageComponent {
   route = inject(ActivatedRoute);
-  issueNumber = toSignal<string>(
-    this.route.paramMap
-    .pipe(
-      map( params => params.get('number') ?? '' ),
-      tap(console.log)
+  issueService = inject(IssueService)
 
+  issueNumber = toSignal<string>
+  (
+    this.route.paramMap
+    .pipe
+    (
+      map( params => params.get('number') ?? '' ),
+      tap((number) => this.issueService.setIssueNumber(number))
     )
   )
+
 }

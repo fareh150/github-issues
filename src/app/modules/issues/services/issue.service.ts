@@ -9,9 +9,13 @@ export class IssueService {
   private issueNumber = signal<string|null>(null)
   issueQuery = injectQuery(() =>(
     {
-      queryKey: ['issue'],
+      queryKey: ['issue', this.issueNumber()],
       queryFn: () => getIssueByNumber(this.issueNumber()!),
-      //condicional para habilitar o deshabilitar la consulta
       enable: this.issueNumber() !== null
     }));
+
+  setIssueNumber = (issueId: string) =>
+  {
+    this.issueNumber.set(issueId);
+  }
 }

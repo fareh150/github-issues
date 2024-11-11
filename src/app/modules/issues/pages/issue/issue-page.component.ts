@@ -14,7 +14,7 @@ import { map, tap } from 'rxjs';
 })
 export default class IssuePageComponent {
   route = inject(ActivatedRoute);
-  issueNumber = toSignal(
+  issueNumber = toSignal<string>(
     this.route.paramMap
     .pipe(
       map( params => params.get('number') ?? '' ),

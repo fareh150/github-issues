@@ -24,7 +24,6 @@ export const getIssueCommentsByNumber = async (issueNumber:string): Promise<Gith
     }
 
     const issueComments: GithubIssue[] = await resp.json();
-    console.log({issueComments});
 
     return issueComments;
   } catch (error) {

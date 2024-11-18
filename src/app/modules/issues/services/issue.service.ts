@@ -31,7 +31,7 @@ export class IssueService {
     this.issueNumber.set(issueId);
   }
 
-  prefetchIssue( issueId: string )
+  prefetchIssue(issueId: string)
   {
     this.queryClient.prefetchQuery(
     {

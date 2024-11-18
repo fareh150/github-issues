@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { injectQuery, injectQueryClient } from '@tanstack/angular-query-experimental';
 import { getIssueByNumber } from '../actions';
 import { getIssueCommentsByNumber } from '../actions/get-issue-comments-by-number.action';
+import { GithubIssue } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,16 @@ export class IssueService {
       queryFn: () => getIssueByNumber(issueId),
       staleTime: 1000 * 60 * 5 // 5 minutos
     })
+  }
+
+  setIssueData(issue: GithubIssue)
+  {
+    this.queryClient.setQueryData(
+      ['issue', issue.number.toString()], //key que queremos estableser/ to string por que consultamos como string
+      issue, // data que queremos establecer
+      {
+        updatedAt: Date.now() + 1000 * 60, // 1 minuto
+      } // forma de poner staleTime con setQueryData
+    )
   }
 }

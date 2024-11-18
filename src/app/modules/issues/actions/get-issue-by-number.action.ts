@@ -7,6 +7,7 @@ const GITHUB_TOKEN = environment.gitHubToken;
 
 export const getIssueByNumber = async (issueNumber:string): Promise<GithubIssue> =>
 {
+  console.log('GetIssue BY number called');
   await sleep(1500);
   try {
     const resp = await fetch(
@@ -24,7 +25,6 @@ export const getIssueByNumber = async (issueNumber:string): Promise<GithubIssue>
     }
 
     const issue: GithubIssue = await resp.json();
-    console.log({issue});
 
     return issue;
   } catch (error) {

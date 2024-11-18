@@ -14,7 +14,8 @@ export class IssueService {
     {
       queryKey: ['issue', this.issueNumber()],
       queryFn: () => getIssueByNumber(this.issueNumber()!),
-      enable: this.issueNumber() !== null
+      enable: this.issueNumber() !== null,
+      staleTime: 1000 * 60 * 5 // 5 minutos
     }));
 
   issueCommentsQuery = injectQuery(() => (

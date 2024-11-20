@@ -24,9 +24,10 @@ export class IssuesService {
       'issues',
       {
         state: this.selectedState(),
+        selectedLabels: [ ...this.selectedLabels() ]
       }
     ],
-    queryFn: () => getIssues(this.selectedState()),
+    queryFn: () => getIssues(this.selectedState(), [ ...this.selectedLabels() ]),
   }));
 
   showIssuesByState(state: State)

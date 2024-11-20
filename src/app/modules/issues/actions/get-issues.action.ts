@@ -7,6 +7,7 @@ const GITHUB_TOKEN = environment.gitHubToken;
 
 export const getIssues = async (
   state: State = State.All,
+  selectedLabels: string[]
 ): Promise<GithubIssue[]> =>
 {
   await sleep(1500);
@@ -14,6 +15,11 @@ export const getIssues = async (
   // ! uso de parametros de URL para peticiones fetch
   const params = new URLSearchParams();
   params.append("state", state);
+
+  if (selectedLabels.length > 0)
+  {
+    params.append("labels", selectedLabels.join(","));
+  }
 
   try {
     const resp = await fetch(

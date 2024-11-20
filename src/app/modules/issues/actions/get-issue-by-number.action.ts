@@ -1,4 +1,3 @@
-import { sleep } from "@helpers/sleep";
 import { environment } from "src/environments/environment.development";
 import { GithubIssue } from "../interfaces";
 
@@ -7,8 +6,6 @@ const GITHUB_TOKEN = environment.gitHubToken;
 
 export const getIssueByNumber = async (issueNumber:string): Promise<GithubIssue> =>
 {
-  console.log('GetIssue BY number called');
-  await sleep(1500);
   try {
     const resp = await fetch(
       `${BASE_URL}/issues/${issueNumber}`,

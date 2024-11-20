@@ -9,6 +9,8 @@ import { State } from '../interfaces';
 export class IssuesService {
   selectedState = signal<State>(State.All);
 
+  selectedLabels = signal(new Set<string>());
+
   labelsQuery = injectQuery(() =>(
   {
     queryKey: ['labels'],
@@ -17,11 +19,32 @@ export class IssuesService {
 
   issuesQuery = injectQuery(() =>(
   {
-    queryKey: ['issues', this.selectedState()],
+    queryKey:
+    [
+      'issues',
+      {
+        state: this.selectedState(),
+      }
+    ],
     queryFn: () => getIssues(this.selectedState()),
   }));
 
-  showIssuesByState(state: State) {
+  showIssuesByState(state: State)
+  {
     this.selectedState.set(state);
+  }
+
+  toggleLabel(label: string)
+  {
+    const labels = this.selectedLabels();
+    if(labels.has(label))
+    {
+      labels.delete(label);
+    }
+    else
+    {
+      labels.add(label);
+    }
+    this.selectedLabels.set(new Set(labels));
   }
 }

@@ -62,4 +62,17 @@ describe('IssuesService', () =>
     service.toggleLabel('Accessibility');
     expect(service.selectedLabels().has('Accessibility')).toBeFalse();
   })
+
+  it('should set selectedLabels and get issues by labels', async() =>
+  {
+    service.toggleLabel('Accessibility');
+    service.toggleLabel('Bug');
+
+    const { data } = await service.issuesQuery.refetch();
+
+    data?.forEach(issue =>
+    {
+      expect(issue.labels.some(label => label.name === 'Accessibility' || label.name === 'Bug')).toBeTrue();
+    })
+  })
 });

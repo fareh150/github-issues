@@ -1,6 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 import { IssuesService } from "./issues.service";
 import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
+import { State } from "../interfaces";
 
 describe('IssuesService', () =>
 {
@@ -35,5 +36,23 @@ describe('IssuesService', () =>
     expect(typeof label.color).toBe('string');
     expect(typeof label.name).toBe('string');
     expect(typeof label.url).toBe('string');
+  })
+
+  it('Shoud set selected state', async() =>
+  {
+    service.showIssuesByState(State.Open);
+    expect(service.selectedState()).toBe(State.Open);
+
+    const { data } = await service.issuesQuery.refetch();
+
+    data?.forEach(issue =>
+    {
+      expect(issue.state).toBe(State.Open);
+    })
+
+    service.showIssuesByState(State.Closed);
+    expect(service.selectedState()).toBe(State.Closed);
+
+
   })
 });

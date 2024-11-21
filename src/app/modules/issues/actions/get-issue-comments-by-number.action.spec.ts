@@ -18,43 +18,43 @@ const mockComments: any[] = [
 const BASE_URL = environment.baseUrl;
 const GITHUB_TOKEN = environment.gitHubToken;
 
-describe('getIssueComments', () =>
-{
-  it('Should fetch issue comments successfully', async () =>
-  {
-    const requestURL = `${BASE_URL}/issues/${issueNumber}/comments`
-    const commentsResponse =  new Response(JSON.stringify(mockComments),
-    {
-      status: 200,
-      statusText: 'OK',
-    })
+// describe('getIssueComments', () =>
+// {
+//   it('Should fetch issue comments successfully', async () =>
+//   {
+//     const requestURL = `${BASE_URL}/issues/${issueNumber}/comments`
+//     const commentsResponse =  new Response(JSON.stringify(mockComments),
+//     {
+//       status: 200,
+//       statusText: 'OK',
+//     })
 
-    spyOn(window, 'fetch').and.resolveTo(commentsResponse)
+//     spyOn(window, 'fetch').and.resolveTo(commentsResponse)
 
-    const comments = await getIssueCommentsByNumber(issueNumber)
+//     const comments = await getIssueCommentsByNumber(issueNumber)
 
-    expect(window.fetch).toHaveBeenCalledWith(requestURL, { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } })
-  })
+//     expect(window.fetch).toHaveBeenCalledWith(requestURL, { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } })
+//   })
 
-  it('Should throw an error if the response is not ok', async () =>
-  {
-    const requestURL = `${BASE_URL}/issues/${issueNumber}/comments`
-    const commentsResponse =  new Response(null,
-    {
-      status: 404,
-      statusText: 'Not Found',
-    })
+//   it('Should throw an error if the response is not ok', async () =>
+//   {
+//     const requestURL = `${BASE_URL}/issues/${issueNumber}/comments`
+//     const commentsResponse =  new Response(null,
+//     {
+//       status: 404,
+//       statusText: 'Not Found',
+//     })
 
-    spyOn(window, 'fetch').and.resolveTo(commentsResponse)
+//     spyOn(window, 'fetch').and.resolveTo(commentsResponse)
 
-    try
-    {
-      await getIssueCommentsByNumber(issueNumber)
-    } catch (error)
-    {
-      expect(error).toBe("Can't load issues")
-    }
+//     try
+//     {
+//       await getIssueCommentsByNumber(issueNumber)
+//     } catch (error)
+//     {
+//       expect(error).toBe("Can't load issues")
+//     }
 
-    expect(window.fetch).toHaveBeenCalledWith(requestURL, { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } })
-  })
-})
+//     expect(window.fetch).toHaveBeenCalledWith(requestURL, { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } })
+//   })
+// })

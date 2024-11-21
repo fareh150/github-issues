@@ -10,8 +10,6 @@ export const getIssues = async (
   selectedLabels: string[]
 ): Promise<GithubIssue[]> =>
 {
-  await sleep(1500);
-
   // ! uso de parametros de URL para peticiones fetch
   const params = new URLSearchParams();
   params.append("state", state);

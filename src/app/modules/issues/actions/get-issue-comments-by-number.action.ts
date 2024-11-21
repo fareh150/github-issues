@@ -7,7 +7,6 @@ const GITHUB_TOKEN = environment.gitHubToken;
 
 export const getIssueCommentsByNumber = async (issueNumber:string): Promise<GithubIssue[]> =>
 {
-  await sleep(1500);
   try {
     const resp = await fetch(
       `${BASE_URL}/issues/${issueNumber}/comments`,

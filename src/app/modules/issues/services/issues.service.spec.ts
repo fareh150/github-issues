@@ -52,7 +52,14 @@ describe('IssuesService', () =>
 
     service.showIssuesByState(State.Closed);
     expect(service.selectedState()).toBe(State.Closed);
+  })
 
+  it('Should set selected labels', async() =>
+  {
+    service.toggleLabel('Accessibility');
+    expect(service.selectedLabels().has('Accessibility')).toBeTrue();
 
+    service.toggleLabel('Accessibility');
+    expect(service.selectedLabels().has('Accessibility')).toBeFalse();
   })
 });
